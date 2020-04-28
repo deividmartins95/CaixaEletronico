@@ -1,0 +1,228 @@
+﻿@{
+    ViewBag.Title = "VisualizaCliente";
+}
+<style>
+    .TextoAlerta {
+        color: red;
+    }
+
+    .botao {
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        border-radius: 2px;
+        border: 1px solid #CCC;
+        padding: 3px 3px;
+        font-weight: bold;
+        font-family: Arial, Tahoma, helvetica;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    function Sacar(clientesNuConta) {
+        debugger;
+        var url = "@Url.Action("Sacar", "Operacoes")";
+        var params = { NuConta: clientesNuConta };
+        $.post(url, params, atualiza);
+
+    }
+
+    function atualiza(resposta) {
+        var elemento = $("#saldo" + resposta.NuConta);
+        elemento.html(resposta.Saldo);
+    }
+</script>
+<script type="text/javascript">
+    function incrementa(clientesNuConta) {
+        var url = "@Url.Action("Depositar", "Operacoes")";
+        var params = { Nuconta: clientesNuConta };
+        $.post(url, params, atualiza);
+    }
+
+    function atualiza(resposta) {
+        var elemento = $("#saldo" + resposta.NuConta);
+        elemento.html(resposta.Saldo);
+    }
+</script>
+<script type="text/javascript">
+    function remover(clientesNuConta) {
+        var url = "@Url.Action("Remove", "Operacoes")";
+        var params = { Nuconta: clientesNuConta };
+        $.post(url, params, atualiza);
+    }
+
+    function atualiza(resposta) {
+        var elemento = $("#saldo" + resposta.NuConta);
+        elemento.html(resposta.Saldo);
+    }
+
+</script>
+<script type="text/javascript">
+    function alterar(clientesNuConta) {
+        var url = "@Url.Action("Editar", "Operacoes")";
+        var params = { Nuconta: clientesNuConta };
+        $.post(url, params, atualiza);
+    }
+
+    function atualiza(resposta) {
+        var elemento = $("#saldo" + resposta.NuConta);
+        elemento.html(resposta.Saldo);
+    }
+    function operacao() {
+        alert('Operacão realizada com sucesso');
+    }
+</script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+<!DOCTYPE html>
+@model IList<WebApplication2.Models.Cliente>
+<title>Dados da conta</title>
+<h2 class="ls-login-logo"> Dados da Conta </h2>
+
+
+
+<p></p>
+<p></p>
+
+<br />
+<br />
+
+
+
+<label for="nuconta"> Numero da conta:       <b>@ViewBag.Cliente.NuConta </b> </label>
+<p></p>
+
+<label for="nome">Nome  :   <b>@ViewBag.Cliente.Nome</b></label>
+
+
+<p></p>
+@*<label for="saldo">Saldo: @ViewBag.Cliente.Saldo</label>*@
+
+<label for="saldo" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Saldo:  <b class="TextoAlerta"> Clique Aqui.. </b>
+</label>
+
+<p></p>
+<p></p>
+
+
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        @ViewBag.Cliente.Saldo
+    </div>
+</div>
+
+@*<label for="nome">Nome :</label>
+    <input id="nome" name="Cliente.Nome" value="@ViewBag.Cliente.Nome" class="form-control" />*@
+
+
+<br />
+
+<button type="button" class="btn btn-primary botao" data-toggle="modal" data-target="#exampleModal">
+    Depositar
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Operacoes/Depositar" method="post">
+                    <label for="nuconta"> Numero da conta:      </label>
+                    <input id="nuconta" name="NuConta" value="@ViewBag.Cliente.NuConta " class="form-control" readonly />
+                    <br />
+
+                    <label for="saldo">Valor a Depositar :</label>
+                    <input id="Deposito" name="Deposito" class="form-control" />
+                    <h6 class="TextoAlerta">VALOR MAXIMO PARA DEPOSITO: R$1000.</h6>
+                    <br />
+                    <br />
+
+                    <input type="submit" value="Depositar" />
+                </form>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<p type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalExemplo">
+    Sacar
+</p>
+
+
+
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sacar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/Operacoes/Sacar" method="post">
+                    <label for="nuconta"> Numero da conta:      </label>
+                    <input id="nuconta" name="NuConta" value="@ViewBag.Cliente.NuConta " class="form-control" readonly />
+                    <br />
+
+                    <label for="saldo">Valor a sacar :</label>
+
+                    <input id="Saque" name="Saque" class="form-control" />
+                    <h6 class="TextoAlerta">NOTAS DISPONIVEIS PARA SAQUE: R$100, R$50, R$20, R$10.</h6>
+                    <br />
+                    <input type="submit" value="Sacar" />
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+
+
+

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+<html>
+<head>
+    <link rel="styleshee" href="~/Content/Css/bootstrap.css" />
+    
+</head>
+<body>
+    <div class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" @Html.ActionLink("My Bank", "Index", "Home") </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                @*<li class="nav-item active">
+                    <a class="nav-link"
+                       @Html.ActionLink("Nova Contas", "Form", "Cliente")</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link"
+                       @Html.ActionLink("Lista de Usuarios", "Index", "Operacoes")</a>
+                </li>*@
+            </ul>
+            <p class="navbar-text navbar-right">
+                @if (Session["nome"] != null)
+                {
+                    @:Bem-Vindo
+                    @Session["nome"] 
+                    @Html.ActionLink("   Sair", "Desconectar", "Logout")
+
+                }
+                else
+                {
+                    @: Olá Cliente
+                    @Html.ActionLink(" Acesse aqui", "Index", "Login")
+
+                }
+            </p>
+             
+
+
+
+        </div>
+
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer class="fixarRodape  navbar navbar-dark bg-dark ">
+        <p class="text-light">
+            <br>
+            MY Bank ..
+        </p>
+    </footer>
+    <style>
+        .fixarRodape {
+            bottom: 0;
+            position: relative;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+
+
+</body>
+</html>
