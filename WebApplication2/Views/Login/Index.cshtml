@@ -2,7 +2,17 @@
     .TextoAlerta {
         color: red;
     }
+
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
 </style>
+
     <!DOCTYPE html >
     <html >
     <head>
@@ -11,59 +21,72 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script src="~/Content/Site.css"></script>
         
     </head>
-    <body >
+    <body>
 
-    <br />
-    <div class="box-parent-login" >
-    <div class="well bg-white box-login" >
-    <h1 class="ls-login-logo" > My Bank</h1 >
+        <br />
+        <div class="card text-center">
+            <div class="card-header">
+                Informe os Dados para Identificação e Acesso 
+            </div>
+            <div class="card-body">
+                <div class="box-parent-login">
+                    <div class="well bg-white box-login">
+                      
 
-    <fieldset >
-    <form action="/Login/Autentica" method="post" >
-    <div class="form-group ls-login-user" >
-    <label for="login" > Conta:</label >
-    
-    <input name="login" id="login" class="form-control" type="text" aria-label="Conta" placeholder=" Digite sua conta " />
-    <a class="TextoAlerta"> Conta é Obrigatoria :</a>
-    </div >
+                        <fieldset>
+                            <form action="/Login/Autentica" method="post">
+                                <div class="form-group ls-login-user">
+                                    <label for="login"> Conta:</label>
 
-    <div class="form-group ls-login-password">
-        <label for="senha"> Senha:</label>
-        <input name="senha" id="senha" class="form-control" type="password" aria-label="Senha" placeholder=" Digite sua senha" />
-        <a class="TextoAlerta"> Senha é Obrigatoria :</a>
-    </div>
+                                    <input  type="number" required="required"  name="login" id="login"  aria-label="Conta" placeholder=" Digite sua conta " pattern="[0-9]+$" />
 
-    <input type="submit" value="Acessar conta " class="btn btn-secondary btn-lg btn-block" >
+                                </div>
+                                <br />
 
-    <p class="txt-center ls-login-signup" >
+                                <div class="form-group ls-login-password">
+                                    <label for="senha"> Senha:</label>
+                                    <input  type="password" required="required"  name="senha" id="senha"  aria-label="Senha" placeholder=" Digite sua senha" pattern="[0-9]+$" />
+                                   
+                                </div>
+                                <br />
+                                <input type="submit" value="Acessar conta " class="btn btn-secondary">
 
-
-
-
-    </p >
-    </form >
-    </fieldset >
-
-    </div >
-    </div >
+                                <p class="txt-center ls-login-signup">
 
 
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
-    <br / >
 
-    </body >
+
+                                </p>
+                            </form>
+                        </fieldset>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                My BANK
+            </div>
+        </div>
+       
+
+
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+        <br / >
+
+    </body>
     </html >

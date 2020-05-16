@@ -1,48 +1,92 @@
-﻿@model  WebApplication2.Models.Cliente
-
-@{
-    ViewBag.Title = "Cadastrar";
-}
-
-
-<form action="~/Cliente/Cadastrar" method="post">
-    <h2 class="text-center">Registro</h2>
-    <hr />
-    @using (Html.BeginForm())
-    { 
-
-    <div class="form-horizontal">
-        <hr />
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Senha, htmlAttributes: new { @class = "control-label col-md-2 " })
-            <div class="col-md-10">
-                <input type="password" @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
-                       @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
-
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Saldo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Saldo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Saldo, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrar Usuário" class="btn btn btn-primary" />
-            </div>
-        </div>
-    </div>
+﻿
+<style>
+    .TextoAlerta {
+        color: red;
     }
-</form>
+
+    .botao {
+        margin-left: 94.888%;
+    }
+</style>
+
+
+<br />
+<br />
+<br />
+
+<title> Relatorio de transacao</title>
+
+<div class="card">
+    <h5 class="card-header TextoAlerta">
+        Relatorio da opereração
+    </h5>
+    <div class="card-body">
+
+        <h6 class="card-text text-center TextoAlerta"> Não foi possivel concluir sua operação..</h6>
+        <br />
+        <h4 class="card-text text-center TextoAlerta">Valor não e disponivel para ser depositado </h4>
+        <br />
+
+
+       
+
+
+        <a class="botao btn btn-light" @Html.ActionLink(" Retornar ", "Index", "Home")
+            </a>
+
+    </div>
+</div>
+
+
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<br />
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+

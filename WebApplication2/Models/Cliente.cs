@@ -12,7 +12,7 @@ namespace WebApplication2.Models
         [Key]
         public int NuConta { get; set; }
 
-        [StringLength(50, ErrorMessage = "O campo Nome permite no máximo 50 caracteres!")]
+       
         public string Nome { get; set; }
 
         public string Sacar(int v)
@@ -20,12 +20,13 @@ namespace WebApplication2.Models
             throw new NotImplementedException();
         }
 
-        [Required(ErrorMessage = "Informe o valor de saldo")]
-        public int Saldo { get; set; }
+        [DisplayFormat(DataFormatString = "{0,c}")]
+        public decimal Saldo { get; set; }
 
-        [DataType(System.ComponentModel.DataAnnotations.DataType.Password)]
+        
         public string Senha { get; set; }
 
-      
+       
+
     }
 }

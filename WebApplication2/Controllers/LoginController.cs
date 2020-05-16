@@ -33,8 +33,8 @@ namespace WebApplication2.Controllers
                 //Session["usuarioLogado"] = usuario;
                 Session["nome"] = Clientes.Nome;
                 Session["nuconta"] = Clientes.NuConta;
-                return RedirectToAction("Index", "Operacoes");
-                
+                return RedirectToAction("1121", "clientes");
+
 
 
             }

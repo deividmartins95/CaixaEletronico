@@ -300,11 +300,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\deividwashington\\source\\repos\\WebApplication2\\Operacoes1.Testes\\WebApplication2.Testes.csproj",
+      "projectUniqueName": "C:\\Users\\deividwashington\\Desktop\\WebApplication2\\Operacoes1.Testes\\WebApplication2.Testes.csproj",
       "projectName": "WebApplication2.Testes",
-      "projectPath": "C:\\Users\\deividwashington\\source\\repos\\WebApplication2\\Operacoes1.Testes\\WebApplication2.Testes.csproj",
+      "projectPath": "C:\\Users\\deividwashington\\Desktop\\WebApplication2\\Operacoes1.Testes\\WebApplication2.Testes.csproj",
       "packagesPath": "C:\\Users\\deividwashington\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\deividwashington\\source\\repos\\WebApplication2\\Operacoes1.Testes\\obj\\",
+      "outputPath": "C:\\Users\\deividwashington\\Desktop\\WebApplication2\\Operacoes1.Testes\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -321,8 +321,8 @@
       "frameworks": {
         "net461": {
           "projectReferences": {
-            "C:\\Users\\deividwashington\\source\\repos\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {
-              "projectPath": "C:\\Users\\deividwashington\\source\\repos\\WebApplication2\\WebApplication2\\WebApplication2.csproj"
+            "C:\\Users\\deividwashington\\Desktop\\WebApplication2\\WebApplication2\\WebApplication2.csproj": {
+              "projectPath": "C:\\Users\\deividwashington\\Desktop\\WebApplication2\\WebApplication2\\WebApplication2.csproj"
             }
           }
         }

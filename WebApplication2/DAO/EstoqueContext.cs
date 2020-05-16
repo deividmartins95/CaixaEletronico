@@ -12,9 +12,9 @@ namespace WebApplication2.DAO
     {
 
        
-        public DbSet<Usuario> Usuarios { get; set; }
+        
         public DbSet<Cliente> clientes { get; set; }
-        public DbSet<Transacoes> Transacoes { get; set; }
+       
 
     }
 }

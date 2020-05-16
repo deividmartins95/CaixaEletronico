@@ -4,121 +4,31 @@
         color: red;
     }
 </style>
-<script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-    function decrementa(clientesNuConta) {
-        var url = "@Url.Action("Sacar", "Operacoes")";
-        var params = { Nuconta: clientesNuConta };
-        $.post(url, params, atualiza);
-    }
-
-    function atualiza(resposta) {
-        var elemento = $("#saldo" + resposta.NuConta);
-        elemento.html(resposta.Saldo);
-    }
-</script>
-<script type="text/javascript">
-    function incrementa(clientesNuConta) {
-        var url = "@Url.Action("Depositar", "Operacoes")";
-        var params = { Nuconta: clientesNuConta };
-        $.post(url, params, atualiza);
-    }
-
-    function atualiza(resposta) {
-        var elemento = $("#saldo" + resposta.NuConta);
-        elemento.html(resposta.Saldo);
-    }
-</script>
-<script type="text/javascript">
-    function remover(clientesNuConta) {
-        var url = "@Url.Action("Remove", "Operacoes")";
-        var params = { Nuconta: clientesNuConta };
-        $.post(url, params, atualiza);
-    }
-
-    function atualiza(resposta) {
-        var elemento = $("#saldo" + resposta.NuConta);
-        elemento.html(resposta.Saldo);
-    }
-
-</script>
-<script type="text/javascript">
-    function alterar(clientesNuConta) {
-        var url = "@Url.Action("Editar", "Operacoes")";
-        var params = { Nuconta: clientesNuConta };
-        $.post(url, params, atualiza);
-    }
-
-    function atualiza(resposta) {
-        var elemento = $("#saldo" + resposta.NuConta);
-        elemento.html(resposta.Saldo);
-    }
-
-</script>
+<title> Relatorio da opereração </title>
 <br />
-@model IList<WebApplication2.Models.Cliente>
-
-@Html.AntiForgeryToken()
-<table class="table table-hover">
-
-    <thead class="thead-dark">
-
-
-        <tr>
-            <th>Numero da Conta</th>
-            <th>Nome do Cliente</th>
-
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @foreach (var clientes in Model)
-        {
-            <tr>
-                <td>@clientes.NuConta</td>
-                <td>
-                    @Html.RouteLink(clientes.Nome, "Visualiza", new { Nuconta = clientes.NuConta })
-                </td>
-                <td>
-                    <h6 class="TextoAlerta">Para acessar sua conta " Selecione o nome " </h6>
-                </td>
-                @*<td id="saldo@(clientes.NuConta)">R$:@clientes.Saldo</td>*@
-
-                @*<td><a href="" onclick="decrementa(@clientes.NuConta)"> - </a></td>
-                    <td>
-                        <input  href="decrementa(@clientes.NuConta)" id="Saldo" name="Saldo" type="submit" class="form-control" />
-                    </td>
-
-                    <td><a class="form-control" href="" onclick="incrementa(@clientes.NuConta)"> + </a></td>
-                    <td><a href="" onclick="remover(@clientes.NuConta)"> Deletar</a></td>
-
-                    <td></td>
-                    <td></td>*@
-                @*<td>
-                        @Html.ActionLink("Alterar", "Editar")
-                    </td>*@
-                @*<td><a href="" onclick="editar(@produto.Id)">@Html.ActionLink("Editar", "editar", "Produto/FormEditar")</a></td>*@
-
-
-            </tr>
-
-        }
-
-    </tbody>
+<br />
+<br />
 
 
 
-</table>
+<div class="card">
+    <h5 class="card-header TextoAlerta">
+        Relatorio da opereração
+    </h5>
+    <div class="card-body">
+
+        <h6 class="card-text text-center TextoAlerta"> Não foi possivel concluir sua operação..</h6>
+        <br />
+        <h4 class="card-text text-center TextoAlerta">Por favor verificar o seu saldo ou notas disponiveis...</h4>
+        <br />
 
 
 
+        <a class="btn btn-warning" @Html.ActionLink(" Retorna para tela de transações ", "1121", "clientes")
+             </a>
+
+    </div>
+</div>
 
 
 

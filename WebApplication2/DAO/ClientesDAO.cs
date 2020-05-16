@@ -9,16 +9,9 @@ namespace WebApplication2.DAO
 {
     public class ClientesDAO
     {
-        public void Cadastrar(Cliente clientes)
-        {
-            using (var context = new EstoqueContext())
-            {
-                context.clientes.Add(clientes);
-                context.SaveChanges();
-            }
-        }
+        public object RegistroDeSaque { get; private set; }
 
-            public Cliente BuscaPorConta(int Nuconta)
+        public Cliente BuscaPorConta(int Nuconta)
             {
                 using (var contexto = new EstoqueContext())
                 {
@@ -72,25 +65,7 @@ namespace WebApplication2.DAO
                     .FirstOrDefault();
             }
         }
-        public void Remover(Cliente Clientes)
-        {
-            using (var context = new EstoqueContext())
-            {
-
-                context.Entry(Clientes).State = EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-        public void Excluir(Cliente Clientes)
-        {
-            using (var context = new EstoqueContext())
-            {
-
-                context.Entry(Clientes).State = System.Data.Entity.EntityState.Deleted;
-                context.SaveChanges();
-            }
-        }
-
+     
 
         public void Atualiza(Cliente Clientes)
         {
@@ -101,6 +76,17 @@ namespace WebApplication2.DAO
             }
         }
 
+        //public void RegistrarSaque(int valorDaNota, int quantidaDeNotas)
+        //{
+        //    using (var context = new EstoqueContext())
+        //    {
+
+        //        context.clientes.Add( Cliente);
+        //        context.SaveChanges();
+        //    }
+
+        }
+       
     }
-}
+
 

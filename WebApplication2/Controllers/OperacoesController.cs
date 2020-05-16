@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication2.DAO;
 using WebApplication2.Models;
+using System.ComponentModel.DataAnnotations;
+
 using static WebApplication2.Filtros.utorizacaoFilterAttribute;
 
 namespace WebApplication2.Controllers
@@ -27,129 +29,160 @@ namespace WebApplication2.Controllers
         {
             ClientesDAO dao = new ClientesDAO();
             Cliente cliente = new Cliente();
-            var listaNotas = new List<int>() { 10, 20, 50, 100 };
             int retorno;
 
             cliente.NuConta = int.Parse(form.GetValue("NuConta").AttemptedValue);
-            cliente.Saldo = int.Parse(form.GetValue("Deposito").AttemptedValue);
+            cliente.Saldo = decimal.Parse(form.GetValue("Deposito").AttemptedValue);
 
             Cliente clienteBanco = dao.BuscaPorConta(cliente.NuConta);
 
-            if (cliente.Saldo > 1000)
+            try
             {
-                throw new Exception(" Valor maximo para deposito é R$ : 1000 ");
-            }
-            if (cliente.Saldo == 2)
-            {
-                throw new Exception(" Valor  para deposito nâo é permitido ");
-            }
-            if (cliente.Saldo == 5)
-            {
-                throw new Exception(" Valor  para deposito nâo é  permitido ");
-            }
-            if (cliente.Saldo == 15)
-            {
-                throw new Exception(" Valor  para deposito nâo é  permitido ");
-            }
-            if (cliente.Saldo == 25)
-            {
-                throw new Exception(" Valor  para deposito nâo é  permitido ");
-            }
-            if (cliente.Saldo == 95)
-            {
-                throw new Exception(" Valor  para deposito nâo é  permitido ");
-            }
-            if (cliente.Saldo == 999)
-            {
-                throw new Exception(" Valor  para deposito nâo é  permitido ");
-            }
-            if (clienteBanco.Saldo < cliente.Saldo)
-            {
-                clienteBanco.Saldo += cliente.Saldo;
+                if (clienteBanco.Saldo < +cliente.Saldo)
+                {
+                    clienteBanco.Saldo += cliente.Saldo;
 
-                retorno = dao.AtualizaSaldo(clienteBanco);
+                    retorno = dao.AtualizaSaldo(clienteBanco);
+
+                    return RedirectToAction("Index", "Operacoes");
+                }
+                if (cliente.Saldo == 1)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 2)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 5)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 25)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 45)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 999)
+                {
+                    throw new Exception("!"); ;
+                }
+
+
+
             }
+            catch(Exception )
+            {
 
+                return RedirectToAction("Form", "Cliente");
+            }
+           
+            return RedirectToAction("Index", "Operacoes");
 
-            return RedirectToAction("1114", "clientes");
         }
         [HttpPost]
         public ActionResult Sacar(FormCollection form)
         {
             ClientesDAO dao = new ClientesDAO();
             Cliente cliente = new Cliente();
+            var listaNotas = new List<int>() { 10, 20, 50, 100 };
             int retorno;
+           
 
 
             cliente.NuConta = int.Parse(form.GetValue("NuConta").AttemptedValue);
-            cliente.Saldo = int.Parse(form.GetValue("Saque").AttemptedValue);
+            cliente.Saldo = decimal.Parse(form.GetValue("Saque").AttemptedValue);
 
             Cliente clienteBanco = dao.BuscaPorConta(cliente.NuConta);
 
-            if (clienteBanco.Saldo < cliente.Saldo)
+            try
             {
-                throw new Exception("Valor do saque maior que o saldo");
+                if (clienteBanco.Saldo < cliente.Saldo)
+                {
+                    return RedirectToAction("Index", "Operacoes");
+                }
+
+                if (clienteBanco.Saldo >= cliente.Saldo)
+                {
+                    clienteBanco.Saldo -= cliente.Saldo;
+
+                    retorno = dao.AtualizaSaldo(clienteBanco);
+                }
+
+                if (cliente.Saldo == 1)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 2)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 5)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 25)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 45)
+                {
+                    throw new Exception("!"); ;
+                }
+                if (cliente.Saldo == 999)
+                {
+                    throw new Exception("!"); ;
+                }
+
+
+
             }
-            if (cliente.Saldo == 2)
+            catch (Exception)
             {
-                throw new Exception(" Valor  para saque nâo é permitido ");
-            }
-            if (cliente.Saldo == 5)
-            {
-                throw new Exception(" Valor  para saque nâo é  permitido ");
-            }
-            if (cliente.Saldo == 15)
-            {
-                throw new Exception(" Valor  para saque nâo é  permitido ");
-            }
-            if (cliente.Saldo == 25)
-            {
-                throw new Exception(" Valor  para saque nâo é  permitido ");
-            }
-            if (cliente.Saldo == 95)
-            {
-                throw new Exception(" Valor  para saque nâo é  permitido ");
-            }
-            if (cliente.Saldo == 999)
-            {
-                throw new Exception(" Valor  para saque nâo é  permitido ");
+                return RedirectToAction("Index", "Operacoes");
             }
 
-            if (clienteBanco.Saldo > cliente.Saldo)
-            {
-                clienteBanco.Saldo -= cliente.Saldo;
+            return RedirectToAction("1121", "clientes");
 
-                retorno = dao.AtualizaSaldo(clienteBanco);
-            }
-            else
-            {
-
-            }
-            return RedirectToAction("1118", "clientes");
-
-                       
-        }
-        public ActionResult Remove(int NuConta)
-        {
-
-            ClientesDAO dao = new ClientesDAO();
-            Cliente clientes = dao.BuscaPorConta(NuConta);
-            dao.Remover(clientes);
-            return Json(clientes);
-        }
-        [HttpPost]
-        public ActionResult Editar(FormCollection form, string function)
-        {
-
-            Cliente clientes = new Cliente();
-
-            clientes.NuConta = int.Parse(form.GetValue("NuConta").AttemptedValue);
-
-            clientes.Saldo = int.Parse(form.GetValue("Saldo").AttemptedValue);
-
-            return RedirectToAction("Index", "Operacoes");
 
         }
+        //public void ValidarSaque(int valor)
+        //{
+        //    int totalDeNotas = 0;
+        //    int resto = 0;
+        //    var listaNotas = new List<int>() { 10, 20, 50, 100 };
+          
+
+        //    for (int i = 0;  i++)
+        //    {
+        //        bool existeNotas = ValidarQuantidadeNotasRetirada();
+
+        //        if (existeNotas)
+        //        {
+        //            int nota = [i];
+
+        //            if (Saldo < nota)
+        //            {
+                        
+        //            }
+
+        //            resto = valor % nota;
+        //            totalDeNotas = valor / nota;
+        //            RegistrarSaque(nota, totalDeNotas);
+        //            ExibirMsg($"Qt Notas : {totalDeNotas}  |  Valor da Nota : {nota}");
+        //        }
+        //        else
+        //        {
+                    
+        //        }
+        //        valor = resto;
+        //    }
+        //}
+
+        //public void ExibirMsg(string msg) => (msg);
 
         [Route("clientes/{NuConta}", Name = "Visualiza")]
         public ActionResult VisualizaCliente(int NuConta)
